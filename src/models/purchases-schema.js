@@ -1,8 +1,8 @@
 const purchasesSchema = {
   name: String,
   desc: String,
-  harga: String,
-  quantity: String,
+  harga: Number,
+  quantity: Number,
 };
 
 module.exports = purchasesSchema;

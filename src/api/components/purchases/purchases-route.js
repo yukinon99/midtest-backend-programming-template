@@ -10,11 +10,15 @@ module.exports = (app) => {
   app.use('/purchases', route);
 
   // Get list of products
-  route.get('/', authenticationMiddleware, purchasesControllers.getProducts);
+  route.get(
+    '/products',
+    authenticationMiddleware,
+    purchasesControllers.getProducts
+  );
 
   // Create products
   route.post(
-    '/',
+    '/create',
     authenticationMiddleware,
     celebrate(purchasesValidator.createProduct),
     purchasesControllers.createProduct

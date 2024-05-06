@@ -3,12 +3,12 @@ const { errorResponder, errorTypes } = require('../../../core/errors');
 
 /**
  * Handle get list of products request
- * @param {object} request - Express request object
+ * @param {object} _request - Express request object
  * @param {object} response - Express response object
  * @param {object} next - Express route middlewares
  * @returns {object} Response object or pass an error to the next route
  */
-async function getProducts(request, response, next) {
+async function getProducts(_request, response, next) {
   try {
     const products = await purchasesService.getProducts();
     return response.status(200).json(products);
