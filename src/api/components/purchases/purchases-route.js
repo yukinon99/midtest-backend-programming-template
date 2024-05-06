@@ -1,14 +1,13 @@
 const express = require('express');
 
 const authenticationMiddleware = require('../../middlewares/authentication-middleware');
-const celebrate = require('../../../core/celebrate-wrappers');
 const purchasesControllers = require('./purchases-controller');
 const purchasesValidator = require('./purchases-validator');
-
+const celebrate = require('../../../core/celebrate-wrappers');
 const route = express.Router();
 
 module.exports = (app) => {
-  app.use('/marketplace', route);
+  app.use('/purchases', route);
 
   // Get list of products
   route.get('/', authenticationMiddleware, purchasesControllers.getProducts);
@@ -28,6 +27,7 @@ module.exports = (app) => {
   route.put(
     '/:id',
     authenticationMiddleware,
+    celebrate(purchasesValidator.updateProduct),
     purchasesControllers.updateProduct
   );
 
